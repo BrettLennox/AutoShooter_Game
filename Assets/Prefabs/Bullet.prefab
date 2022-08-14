@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
   _speed: 1
+  _offset: 360
 --- !u!70 &-1042022767756620383
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
