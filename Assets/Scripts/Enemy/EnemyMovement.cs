@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float _speed = 2f;
     [SerializeField] private Transform _targetPos;
     [SerializeField] private int _health;
+    [SerializeField] private int _pointValue;
 
     Vector3 dir;
     #endregion
@@ -15,6 +16,7 @@ public class EnemyMovement : MonoBehaviour
     public float Speed { get => _speed; set => _speed = value; }
     public Transform TargetPos { get => _targetPos; set => _targetPos = value; }
     public int Health { get => _health; private set => _health = value; }
+    public int PointValue { get => _pointValue; set => _pointValue = value; }
     #endregion
     #region References
     private EnemyTracker _enemyTracker;
@@ -61,7 +63,24 @@ public class EnemyMovement : MonoBehaviour
         Health -= amount;
         if(Health <= 0)
         {
+            gameObject.SetActive(false);
+            GameObject.Find("GameManager").GetComponent<ScoreManager>().IncreaseScore(PointValue);
             //death routine
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        var bullet = other.CompareTag("Bullet");
+        //var player = other.GetComponent<PlayerHealth>();
+        if (bullet)
+        {
+            TakeDamage(other.GetComponent<BulletBehaviour>().Damage);
+            other.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("NOT BULLET");
         }
     }
 }
