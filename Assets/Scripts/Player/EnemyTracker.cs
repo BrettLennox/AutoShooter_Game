@@ -11,17 +11,6 @@ public class EnemyTracker : MonoBehaviour
     public List<GameObject> Enemies { get => _enemies; set => _enemies = value; }
     #endregion
 
-    private void Update()
-    {
-        if (Enemies.Count == 0)
-        {
-            //foreach (GameObject bullet in GetComponent<PlayerAttack>().Bullets)
-            //{
-            //    bullet.gameObject.SetActive(false);
-            //}
-        }
-    }
-
     public GameObject ClosestEnemy()
     {
         if (Enemies.Count > 0)

@@ -217,6 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 684474592}
   - component: {fileID: 684474591}
+  - component: {fileID: 684474593}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -252,6 +253,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &684474593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684474590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb173f96a4d6614b910fc9dad077271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectPoolData:
+  - pooledObjects: []
+    objectToPool: {fileID: 5543982970966117837, guid: d499cdad9b081304cabf0e9eeedc987c, type: 3}
+    amountToPool: 40
+  - pooledObjects: []
+    objectToPool: {fileID: 7690071789042308961, guid: af07f0b01e0950d44b26afb0f38e8f8a, type: 3}
+    amountToPool: 20
 --- !u!1001 &885045426
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -259,6 +279,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7690071789042308960, guid: af07f0b01e0950d44b26afb0f38e8f8a, type: 3}
+      propertyPath: _speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7690071789042308960, guid: af07f0b01e0950d44b26afb0f38e8f8a, type: 3}
+      propertyPath: _health
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7690071789042308960, guid: af07f0b01e0950d44b26afb0f38e8f8a, type: 3}
+      propertyPath: _enemyData
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7690071789042308960, guid: af07f0b01e0950d44b26afb0f38e8f8a, type: 3}
+      propertyPath: _pointValue
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7690071789042308961, guid: af07f0b01e0950d44b26afb0f38e8f8a, type: 3}
       propertyPath: m_Name
       value: Enemy (1)
@@ -316,6 +352,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7690071789042308960, guid: af07f0b01e0950d44b26afb0f38e8f8a, type: 3}
+      propertyPath: _speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7690071789042308960, guid: af07f0b01e0950d44b26afb0f38e8f8a, type: 3}
+      propertyPath: _health
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7690071789042308960, guid: af07f0b01e0950d44b26afb0f38e8f8a, type: 3}
+      propertyPath: _enemyData
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7690071789042308960, guid: af07f0b01e0950d44b26afb0f38e8f8a, type: 3}
+      propertyPath: _pointValue
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7690071789042308961, guid: af07f0b01e0950d44b26afb0f38e8f8a, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -421,5 +473,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7745226699385838095, guid: 300eea0e0a79f7b40b817a9dcd06b96a, type: 3}
+      propertyPath: _equippedWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: a9ad49b2795574443bd2b1b2a111d57d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 300eea0e0a79f7b40b817a9dcd06b96a, type: 3}

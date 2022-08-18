@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 2
   _targetPos: {fileID: 0}
-  _health: 4
+  _health: 10
   _pointValue: 10
 --- !u!58 &-910540680537266097
 CircleCollider2D:

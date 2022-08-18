@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
     #region Variables
+    [SerializeField] private EnemyData _enemyData;
     [SerializeField] private float _speed = 2f;
     [SerializeField] private Transform _targetPos;
     [SerializeField] private int _health;
     [SerializeField] private int _pointValue;
 
+    [SerializeField] List<EnemyData> enemyData;
+
     Vector3 dir;
     #endregion
     #region Properties
+    public EnemyData EnemyData { get => _enemyData; set => _enemyData = value; }
     public float Speed { get => _speed; set => _speed = value; }
     public Transform TargetPos { get => _targetPos; set => _targetPos = value; }
     public int Health { get => _health; private set => _health = value; }
@@ -28,9 +33,38 @@ public class EnemyMovement : MonoBehaviour
         _enemyTracker = GameObject.FindWithTag("Player").GetComponent<EnemyTracker>();
     }
 
+    private void EnemySetup()
+    {
+
+        Health = EnemyData.enemyData.enemyHealth;
+        Speed = EnemyData.enemyData.enemySpeed;
+        PointValue = EnemyData.enemyData.pointValue;
+    }
+
+    private void SelectRandomEnemyData()
+    {
+        enemyData = Resources.LoadAll<EnemyData>("Game Data/Enemies/").ToList();
+        if (enemyData.Count > 0)
+        {
+            int randomEnemyData = Random.Range(0, enemyData.Count - 1);
+            EnemyData = enemyData[randomEnemyData];
+        }
+        else Debug.LogWarning("No EnemyData in directory");
+    }
+
     private void OnEnable()
     {
         _enemyTracker.Enemies.Add(this.gameObject);
+        if (EnemyData == null)
+        {
+            SelectRandomEnemyData();
+            EnemySetup();
+        }
+        else
+        {
+            EnemySetup();
+        }
+
     }
 
     private void OnDisable()
@@ -61,7 +95,7 @@ public class EnemyMovement : MonoBehaviour
     private void TakeDamage(int amount)
     {
         Health -= amount;
-        if(Health <= 0)
+        if (Health <= 0)
         {
             gameObject.SetActive(false);
             GameObject.Find("GameManager").GetComponent<ScoreManager>().IncreaseScore(PointValue);

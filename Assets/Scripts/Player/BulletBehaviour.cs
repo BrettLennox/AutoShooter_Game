@@ -6,12 +6,9 @@ public class BulletBehaviour : MonoBehaviour
 {
     #region Variables
     [SerializeField] private GameObject _target;
-    [SerializeField] private int _damage = 2;
+    [SerializeField] private int _damage;
     [SerializeField] private float _speed;
-    [SerializeField] private float _offset = 1f;
     Vector3 dir;
-    Vector3 _targetPos, _thisPos;
-    float _angle;
     #endregion
     #region Properties
     public GameObject Target { get => _target; set => _target = value; }
@@ -29,10 +26,6 @@ public class BulletBehaviour : MonoBehaviour
             Target = GameObject.FindWithTag("Player").GetComponent<EnemyTracker>().ClosestEnemy();
         }
         else { this.gameObject.SetActive(false); }
-        //else if (Target == null)
-        //{
-        //    Target = GameObject.FindWithTag("Player").GetComponent<EnemyTracker>().ClosestEnemy();
-        //}
     }
 
     private void MoveTowardsTarget()
@@ -41,10 +34,5 @@ public class BulletBehaviour : MonoBehaviour
         dir.Normalize();
 
         transform.Translate((dir * Speed) * Time.deltaTime);
-    }
-
-    private void OnDisable()
-    {
-        GameObject.FindWithTag("Player").GetComponent<PlayerAttack>().Bullets.Remove(this.gameObject);
     }
 }
