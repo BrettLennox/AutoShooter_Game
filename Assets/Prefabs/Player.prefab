@@ -57,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7944684613cebbd408479f37eda98a93, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,9 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f79cd6c7725b74ab9fd10dc17355aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _equippedWeapon: {fileID: 0}
   _bulletPrefab: {fileID: 5543982970966117837, guid: d499cdad9b081304cabf0e9eeedc987c, type: 3}
   _bulletTimer: Infinity
-  _timeBetweenShots: 2
 --- !u!50 &361474969253875311
 Rigidbody2D:
   serializedVersion: 4

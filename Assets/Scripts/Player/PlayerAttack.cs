@@ -12,16 +12,24 @@ public class PlayerAttack : MonoBehaviour
     #region Properties
     public GameObject BulletPrefab { get => _bulletPrefab; private set => _bulletPrefab = value; }
     #endregion
+    #region References
+    EnemyTracker _enemyTracker;
+    #endregion
+
+    private void Awake()
+    {
+        _enemyTracker = GetComponent<EnemyTracker>();
+    }
 
     // Update is called once per frame
     void Update()
     {
         _bulletTimer += Time.deltaTime;
 
-        if (_bulletTimer >= _equippedWeapon.weaponData.fireRate && GetComponent<EnemyTracker>().ClosestEnemy() != null)
+        if (_bulletTimer >= _equippedWeapon.weaponData.fireRate && _enemyTracker.ClosestEnemy(transform) != null)
         {
             _bulletTimer = 0;
-            GameObject closestTarget = GetComponent<EnemyTracker>().ClosestEnemy();
+            GameObject closestTarget = _enemyTracker.ClosestEnemy(transform);
             GameObject bullet = ObjectPool.SharedInstance.GetPooledObject("Bullet");
             if (bullet != null)
             {
@@ -29,7 +37,7 @@ public class PlayerAttack : MonoBehaviour
                 bullet.transform.rotation = Quaternion.identity;
 
                 BulletBehaviour bulletBehaviour = bullet.GetComponent<BulletBehaviour>();
-                bulletBehaviour.Target = GetComponent<EnemyTracker>().ClosestEnemy();
+                bulletBehaviour.Target = _enemyTracker.ClosestEnemy(transform);
                 bulletBehaviour.Damage = _equippedWeapon.weaponData.weaponDamage;
                 bullet.SetActive(true);
             }

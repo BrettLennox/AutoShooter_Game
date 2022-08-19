@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
@@ -18,6 +19,7 @@ public class ObjectPool : MonoBehaviour
     private void Awake()
     {
         SharedInstance = this;
+        Debug.Log(_objectPoolData.Count);
 
         GameObject pooledParent = new GameObject("Pooled Objects");
         for (int i = 0; i < _objectPoolData.Count; i++)
@@ -34,19 +36,28 @@ public class ObjectPool : MonoBehaviour
 
     public GameObject GetPooledObject(string objectName)
     {
-        for (int i = 0; i < _objectPoolData.Count; i++)
+        bool objectPoolData = _objectPoolData.Any((x) => x.objectToPool.name == objectName);
+        if (objectPoolData)
         {
-            if (_objectPoolData[i].objectToPool.name == objectName)
+            for (int i = 0; i < _objectPoolData.Count; i++)
             {
-                for (int x = 0; x < _objectPoolData[i].amountToPool; x++)
+                if (_objectPoolData[i].objectToPool.name == objectName)
                 {
-                    if (!_objectPoolData[i].pooledObjects[x].activeInHierarchy)
+                    for (int x = 0; x < _objectPoolData[i].amountToPool; x++)
                     {
-                        return _objectPoolData[i].pooledObjects[x];
+                        if (!_objectPoolData[i].pooledObjects[x].activeInHierarchy)
+                        {
+                            return _objectPoolData[i].pooledObjects[x];
+                        }
                     }
                 }
             }
         }
+        else
+        {
+            Debug.LogWarning(objectName + " does not exist withing pooled data");
+        }
+        
 
         return null;
     }

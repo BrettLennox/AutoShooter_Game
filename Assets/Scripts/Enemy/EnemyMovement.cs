@@ -110,6 +110,13 @@ public class EnemyMovement : MonoBehaviour
         if (bullet)
         {
             TakeDamage(other.GetComponent<BulletBehaviour>().Damage);
+            GameObject particleSystem = ObjectPool.SharedInstance.GetPooledObject("BulletImpact_ParticleSystem");
+            if (particleSystem != null)
+            {
+                particleSystem.transform.position = other.transform.position;
+                particleSystem.transform.rotation = Quaternion.identity;
+                particleSystem.SetActive(true);
+            }
             other.gameObject.SetActive(false);
         }
         else

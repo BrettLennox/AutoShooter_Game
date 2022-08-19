@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ef89e7ad75cfbed43a80afbda82bc119, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,10 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 018fdc6d51118bb4f8b5ebe3d291751b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyData: {fileID: 0}
   _speed: 2
   _targetPos: {fileID: 0}
   _health: 10
   _pointValue: 10
+  enemyData: []
 --- !u!58 &-910540680537266097
 CircleCollider2D:
   m_ObjectHideFlags: 0

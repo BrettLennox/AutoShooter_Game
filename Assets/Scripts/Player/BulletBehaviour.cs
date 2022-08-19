@@ -15,17 +15,44 @@ public class BulletBehaviour : MonoBehaviour
     public float Speed { get => _speed; set => _speed = value; }
     public int Damage { get => _damage; set => _damage = value; }
     #endregion
+    #region References
+    private EnemyTracker _enemyTracker;
+    #endregion
 
+    private void Awake()
+    {
+        _enemyTracker = GameObject.FindWithTag("Player").GetComponent<EnemyTracker>();
+    }
     // Update is called once per frame
     void Update()
     {
-
-        if (Target != null) { MoveTowardsTarget(); }
-        if(GameObject.FindWithTag("Player").GetComponent<EnemyTracker>().ClosestEnemy() != null)
+        MoveTowardsTarget();
+        if(Target == null || !Target.activeInHierarchy)
         {
-            Target = GameObject.FindWithTag("Player").GetComponent<EnemyTracker>().ClosestEnemy();
+            Target = _enemyTracker.ClosestEnemy(transform);
         }
-        else { this.gameObject.SetActive(false); }
+
+
+        //if (Target != null) { MoveTowardsTarget(); }
+        //else
+        //{
+        //    if (_enemyTracker.ClosestEnemy() != null)
+        //    {
+        //        Target = _enemyTracker.ClosestEnemy();
+        //    }
+        //    else
+        //    {
+        //        GameObject particleSystem = ObjectPool.SharedInstance.GetPooledObject("BulletImpact_ParticleSystem");
+        //        if (particleSystem != null)
+        //        {
+        //            particleSystem.transform.position = transform.position;
+        //            particleSystem.transform.rotation = Quaternion.identity;
+        //            particleSystem.SetActive(true);
+        //        }
+        //        this.gameObject.SetActive(false);
+        //    }
+        //}
+        
     }
 
     private void MoveTowardsTarget()

@@ -11,7 +11,7 @@ public class EnemyTracker : MonoBehaviour
     public List<GameObject> Enemies { get => _enemies; set => _enemies = value; }
     #endregion
 
-    public GameObject ClosestEnemy()
+    public GameObject ClosestEnemy(Transform transform)
     {
         if (Enemies.Count > 0)
         {
