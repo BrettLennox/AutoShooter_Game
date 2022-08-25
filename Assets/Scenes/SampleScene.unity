@@ -269,13 +269,13 @@ MonoBehaviour:
   _objectPoolData:
   - pooledObjects: []
     objectToPool: {fileID: 5543982970966117837, guid: d499cdad9b081304cabf0e9eeedc987c, type: 3}
-    amountToPool: 100
+    amountToPool: 200
   - pooledObjects: []
     objectToPool: {fileID: 7690071789042308961, guid: af07f0b01e0950d44b26afb0f38e8f8a, type: 3}
     amountToPool: 20
   - pooledObjects: []
     objectToPool: {fileID: 621572317223749473, guid: 1b9e0543337518c4990c37c626c772e5, type: 3}
-    amountToPool: 100
+    amountToPool: 200
 --- !u!114 &684474594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -768,6 +768,6 @@ PrefabInstance:
     - target: {fileID: 7745226699385838095, guid: 300eea0e0a79f7b40b817a9dcd06b96a, type: 3}
       propertyPath: _equippedWeapon
       value: 
-      objectReference: {fileID: 11400000, guid: f5849d5a7582ded47ab264e8f09fb098, type: 2}
+      objectReference: {fileID: 11400000, guid: a9ad49b2795574443bd2b1b2a111d57d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 300eea0e0a79f7b40b817a9dcd06b96a, type: 3}

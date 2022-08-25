@@ -12,6 +12,7 @@ public class WeaponData : ScriptableObject
         public int weaponID;
         public int weaponDamage;
         public float fireRate;
+        public float bulletSpeed;
     }
 
     public Weapon weaponData;

@@ -22,7 +22,12 @@ public class PlayerMovement : MonoBehaviour
     private void Movement()
     {
         MoveDir = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
-        MoveDir.Normalize();
+        if(MoveDir.sqrMagnitude > 1)
+        {
+            MoveDir = MoveDir.normalized;
+        }
+        Debug.Log(MoveDir.magnitude);
+
 
         transform.Translate((MoveDir * Speed) * Time.deltaTime);
     }

@@ -17,3 +17,4 @@ MonoBehaviour:
     weaponID: 0
     weaponDamage: 1
     fireRate: 1
+    bulletSpeed: 1.5

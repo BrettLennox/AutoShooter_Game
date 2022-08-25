@@ -39,6 +39,7 @@ public class PlayerAttack : MonoBehaviour
                 BulletBehaviour bulletBehaviour = bullet.GetComponent<BulletBehaviour>();
                 bulletBehaviour.Target = _enemyTracker.ClosestEnemy(transform);
                 bulletBehaviour.Damage = _equippedWeapon.weaponData.weaponDamage;
+                bulletBehaviour.Speed = _equippedWeapon.weaponData.bulletSpeed;
                 bullet.SetActive(true);
             }
         }
