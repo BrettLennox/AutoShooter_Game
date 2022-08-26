@@ -19,7 +19,6 @@ public class ObjectPool : MonoBehaviour
     private void Awake()
     {
         SharedInstance = this;
-        Debug.Log(_objectPoolData.Count);
 
         GameObject pooledParent = new GameObject("Pooled Objects");
         for (int i = 0; i < _objectPoolData.Count; i++)

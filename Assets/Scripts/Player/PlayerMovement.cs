@@ -26,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
         {
             MoveDir = MoveDir.normalized;
         }
-        Debug.Log(MoveDir.magnitude);
 
 
         transform.Translate((MoveDir * Speed) * Time.deltaTime);

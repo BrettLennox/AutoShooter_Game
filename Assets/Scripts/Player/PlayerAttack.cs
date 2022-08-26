@@ -14,11 +14,25 @@ public class PlayerAttack : MonoBehaviour
     #endregion
     #region References
     EnemyTracker _enemyTracker;
+    MousePosition _mousePosition;
     #endregion
 
     private void Awake()
     {
-        _enemyTracker = GetComponent<EnemyTracker>();
+        Setup();
+    }
+
+    private void OnValidate()
+    {
+        Setup();
+    }
+
+    private void Setup()
+    {
+        if (_enemyTracker == null)
+            _enemyTracker = GetComponent<EnemyTracker>();
+        if (_mousePosition == null)
+            _mousePosition = GetComponent<MousePosition>();
     }
 
     // Update is called once per frame
@@ -26,21 +40,28 @@ public class PlayerAttack : MonoBehaviour
     {
         _bulletTimer += Time.deltaTime;
 
-        if (_bulletTimer >= _equippedWeapon.weaponData.fireRate && _enemyTracker.ClosestEnemy(transform) != null)
+        if (Input.GetButton("Fire1"))
+        {
+            Attack(_mousePosition.CurrentMousePosition());
+        }
+    }
+
+    private void Attack(Vector3 targetPos)
+    {
+        if (_bulletTimer >= _equippedWeapon.weaponData.fireRate)
         {
             _bulletTimer = 0;
-            GameObject closestTarget = _enemyTracker.ClosestEnemy(transform);
-            GameObject bullet = ObjectPool.SharedInstance.GetPooledObject("Bullet");
-            if (bullet != null)
+            GameObject projectile = ObjectPool.SharedInstance.GetPooledObject("Bullet");
+            if (projectile != null)
             {
-                bullet.transform.position = transform.position;
-                bullet.transform.rotation = Quaternion.identity;
+                projectile.transform.position = transform.position;
+                projectile.transform.rotation = Quaternion.identity;
 
-                BulletBehaviour bulletBehaviour = bullet.GetComponent<BulletBehaviour>();
-                bulletBehaviour.Target = _enemyTracker.ClosestEnemy(transform);
+                BulletBehaviour bulletBehaviour = projectile.GetComponent<BulletBehaviour>();
+                bulletBehaviour.Target = targetPos;
                 bulletBehaviour.Damage = _equippedWeapon.weaponData.weaponDamage;
                 bulletBehaviour.Speed = _equippedWeapon.weaponData.bulletSpeed;
-                bullet.SetActive(true);
+                projectile.SetActive(true);
             }
         }
     }
